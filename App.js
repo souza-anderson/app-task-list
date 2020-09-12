@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, Alert, Modal, TouchableHighlight, TextInput, LogBox, AsyncStorage } from 'react-native';
 import imageBackgroundHeader from './assets/bg.jpg';
 
-
 import { AntDesign } from '@expo/vector-icons';
 import { useFonts, Lato_400Regular } from '@expo-google-fonts/lato';
 
@@ -86,59 +85,59 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <ScrollView style={{flex: 1}}>
-        <View style={{flex: 1, backgroundColor: 'red', minHeight: '100%'}}>        
-        <StatusBar hidden></StatusBar>
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <StatusBar hidden></StatusBar>
 
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modal}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <TextInput 
-                autoFocus={true}
-                onChangeText={text => setTask(text)}
-              />
-              <TouchableHighlight
-                style={{...styles.openButton, backgroundColor: '#2196F3'}}
-                onPress={() => addTask()}  
-              >
-                <Text style={styles.textStyle}>Adicionar Tarefa</Text>
-              </TouchableHighlight>            
-            </View>
-          </View>
-        </Modal>
-
-        <ImageBackground source={imageBackgroundHeader} style={styles.image}>
-          <View style={styles.header}>
-            <Text style={styles.textHeader}>Lista de Tarefas</Text>
-          </View>
-        </ImageBackground>
-
-        {          
-          tasks.map(task => {
-            return (
-              <View style={styles.singleTask}>
-                <View style={{flex: 1, padding: 10}}>
-                  <Text>{task.task}</Text>
-                </View>
-
-                <View style={{flex: 1, justifyContent: 'center', alignItems: 'flex-end', padding: 10}}>
-                  <TouchableOpacity onPress={() => deleteTask(task.id)}>
-                    <AntDesign name="minuscircleo" size={24} color="black" />
-                  </TouchableOpacity>
-                </View>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modal}
+            onRequestClose={() => {
+              setModal(!modal);
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <TextInput 
+                  autoFocus={true}
+                  onChangeText={text => setTask(text)}
+                />
+                <TouchableHighlight
+                  style={{...styles.openButton, backgroundColor: '#2196F3'}}
+                  onPress={() => addTask()}  
+                >
+                  <Text style={styles.textStyle}>Adicionar Tarefa</Text>
+                </TouchableHighlight>            
               </View>
-            );
-          })  
-        }
+            </View>
+          </Modal>
 
+          <ImageBackground source={imageBackgroundHeader} style={styles.image}>
+            <View style={styles.header}>
+              <Text style={styles.textHeader}>Lista de Tarefas</Text>
+            </View>
+          </ImageBackground>
 
+          {          
+            tasks.map(task => {
+              return (
+                <View style={styles.singleTask}>
+                  <View style={{flex: 1, padding: 10}}>
+                    <Text>{task.task}</Text>
+                  </View>
+
+                  <View style={{flex: 1, justifyContent: 'center', alignItems: 'flex-end', padding: 10}}>
+                    <TouchableOpacity onPress={() => deleteTask(task.id)}>
+                      <AntDesign name="minuscircleo" size={24} color="black" />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              );
+            })  
+          }       
+        </ScrollView>
+      
         <TouchableOpacity 
           style={styles.buttonAddTask}
           onPress={() => {
@@ -151,17 +150,18 @@ export default function App() {
             Adicionar Tarefa
           </Text>
         </TouchableOpacity>
-        </View>
-      </ScrollView>
-
+      </View>
     );
   }
-
-
-
 }
 
 const styles = StyleSheet.create({
+
+  buttonClose: {
+    flexDirection: 'row',
+    alignItems: 'flex-end'
+  },
+
   image: {
     width: '100%',
     height: 80,
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 8,
     marginTop: 20,
-    backgroundColor: 'gray'    
+    backgroundColor: 'gray'
   },
 
   buttonText: {
