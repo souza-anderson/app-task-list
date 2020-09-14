@@ -27,10 +27,10 @@ Esta é uma aplicação simples desenvolvida a partir do **Curso de Desenvolvime
 ```bash
 
     # Clonar o repositório
-    $ git clone https://github.com/souza-anderson/app-anotacao
+    $ git clone https://github.com/souza-anderson/app-task-list
 
     # Entrar no diretório do projeto
-    $ cd app-notes
+    $ cd app-task-list
 
     # Instalar as dependências
     $ yarn
